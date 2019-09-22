@@ -3,9 +3,9 @@ import React from "react";
 const formatteTime = time => {
   const padZero = num => num.toString().padStart(2, "0");
 
-  const hours = Math.floor(time / 360);
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor((time - hours * 3600) / 60);
+  const seconds = Math.floor(time - hours * 3600 - minutes * 60);
 
   return `${hours ? `${hours}:` : ""}${padZero(minutes)}:${padZero(seconds)}`;
 };
