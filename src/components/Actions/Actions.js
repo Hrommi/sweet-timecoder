@@ -1,10 +1,12 @@
 import React from "react";
 
-const Actions = ({ toggleRecord }) => {
+import RecordIcon from "../RecordIcon";
+
+const Actions = ({ toggleRecord, isRecording }) => {
   return (
     <div>
       <button type="button" onClick={toggleRecord}>
-        Record
+        Record <RecordIcon rec={isRecording} />
       </button>
     </div>
   );

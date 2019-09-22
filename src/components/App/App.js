@@ -45,7 +45,10 @@ function App() {
             <VideoPlayer url={video} innerRef={playerRef} />
           </div>
           <div className="app__actions">
-            <Actions toggleRecord={toggleRecord} />
+            <Actions
+              toggleRecord={toggleRecord}
+              isRecording={typeof startRecordTime === "number"}
+            />
           </div>
           <div className="app_timecodes">
             <Timecodes timecodes={timecodes} removeTimecode={removeTimecode} />
