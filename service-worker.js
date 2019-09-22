@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sweet-timecoder/precache-manifest.b429b8628c824b21f5b54e89a7d9c435.js"
+  "/sweet-timecoder/precache-manifest.c05e91a3a63abee27744abf7825f0d2a.js"
 );
 
 self.addEventListener('message', (event) => {
