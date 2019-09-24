@@ -1,6 +1,7 @@
 import React from "react";
-
-import RecordIcon from "../RecordIcon";
+import { Card, Button } from "antd";
+import "antd/es/card/style/css";
+import "antd/es/button/style/css";
 
 import { useKeyPress } from "../../hooks/useKeyPress";
 
@@ -17,11 +18,15 @@ const Actions = ({ toggleRecord, isRecording }) => {
   }, [recordPress, toggleRecord]);
 
   return (
-    <div>
-      <button type="button" onClick={handleRecord}>
-        Record <RecordIcon rec={isRecording} />
-      </button>
-    </div>
+    <Card size="small" title="Actions">
+      <Button
+        type="danger"
+        icon={isRecording ? "pause-circle" : "play-circle"}
+        onClick={handleRecord}
+      >
+        Record
+      </Button>
+    </Card>
   );
 };
 

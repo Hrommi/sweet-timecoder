@@ -7,6 +7,8 @@ import {
   ProgressControl
 } from "video-react";
 import Style from "style-it";
+import { Card } from "antd";
+import "antd/es/card/style/css";
 
 import "video-react/dist/video-react.css";
 import "./VideoPlayer.css";
@@ -35,7 +37,7 @@ const VideoPlayer = ({ timecodes, url, innerRef }) => {
   }, [timecodes, innerRef]);
 
   return (
-    <>
+    <Card size="small">
       <Style>
         {`.video-player__progress .video-react-load-progress:after {
           background: ${lineBackgrounds};
@@ -49,7 +51,7 @@ const VideoPlayer = ({ timecodes, url, innerRef }) => {
           <ProgressControl className="video-player__progress" order={5.1} />
         </ControlBar>
       </Player>
-    </>
+    </Card>
   );
 };
 
