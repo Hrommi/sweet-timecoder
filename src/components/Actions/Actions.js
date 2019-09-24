@@ -14,7 +14,7 @@ const Actions = ({ toggleRecord, isRecording }) => {
     if (recordPress) {
       toggleRecord();
     }
-  }, [recordPress]);
+  }, [recordPress, toggleRecord]);
 
   return (
     <div>
