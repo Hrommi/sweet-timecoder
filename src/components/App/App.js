@@ -42,7 +42,11 @@ function App() {
       {video ? (
         <div className="app__container">
           <div className="app__video">
-            <VideoPlayer url={video} innerRef={playerRef} />
+            <VideoPlayer
+              timecodes={timecodes}
+              url={video}
+              innerRef={playerRef}
+            />
           </div>
           <div className="app__actions">
             <Actions
