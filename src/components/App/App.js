@@ -14,28 +14,36 @@ function App() {
 
   const playerRef = React.useRef(null);
 
-  const [startRecordTime, setStartRecordTime] = React.useState(undefined);
-  const toggleRecord = () => {
+  const startRecordTime = React.useRef(undefined);
+  const toggleRecord = React.useCallback(() => {
     const { player } = playerRef.current.getState();
     const currentTime = player.currentTime;
-    if (typeof startRecordTime !== "undefined") {
-      setTimecodes([
-        ...timecodes,
-        { id: Date.now().toString(), start: startRecordTime, end: currentTime }
+    if (typeof startRecordTime.current !== "undefined") {
+      setTimecodes(oldTimecodes => [
+        ...oldTimecodes,
+        {
+          id: Date.now().toString(),
+          start: startRecordTime.current,
+          end: currentTime
+        }
       ]);
-      setStartRecordTime(undefined);
+      startRecordTime.current = undefined;
+      setIsRecording(false);
       playerRef.current.pause();
     } else {
-      setStartRecordTime(currentTime);
+      startRecordTime.current = currentTime;
+      setIsRecording(true);
       playerRef.current.play();
     }
-  };
+  }, []);
 
   const [timecodes, setTimecodes] = React.useState([]);
   const removeTimecode = id => () => {
     const newTimecodes = timecodes.filter(timecode => timecode.id !== id);
     setTimecodes(newTimecodes);
   };
+
+  const [isRecording, setIsRecording] = React.useState(false);
 
   return (
     <div className="app">
@@ -49,10 +57,7 @@ function App() {
             />
           </div>
           <div className="app__actions">
-            <Actions
-              toggleRecord={toggleRecord}
-              isRecording={typeof startRecordTime === "number"}
-            />
+            <Actions toggleRecord={toggleRecord} isRecording={isRecording} />
           </div>
           <div className="app_timecodes">
             <Timecodes timecodes={timecodes} removeTimecode={removeTimecode} />
